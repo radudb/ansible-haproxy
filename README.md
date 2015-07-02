@@ -37,6 +37,7 @@ haproxy_frontends:
 haproxy_backends:
   - name: acoolcom              # A natural name for each backend. Required.
     balance: first              # The algorithm used to select a server. Defaults to 'roundrobin'
+    tcp_mode: True              # The TCP mode will be enabled and used instead of the default HTTP
     servers:                    # List of the servers if host_vars is not used
       - name: one.abc.com       # Name for the server in the pool
         port: 80                # Port number of the application

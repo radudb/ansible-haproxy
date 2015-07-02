@@ -58,10 +58,14 @@ backend {{ backend.name }}
 {% endif %}
 {% endif %}
 {% endfor %}
-{# Using group_vars #}
+{% if backend.tcp_mode is defined %}
+{% if backend.tcp_mode %}
+    mode tcp
+{% endif %}
+{% endif %}
 {% if backend.servers is defined %}
 {% for server in backend.servers %}
-    server      static {{ server.name }}:{{ server.port }}
+    server      {{ server.name }} {{ server.name }}:{{ server.port }} check
 {% endfor %}
 {% endif %}
 
